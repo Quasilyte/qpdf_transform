@@ -14,6 +14,6 @@ from_page{from}, to_page{to}, pages{pages} {
 
 void PageRange::check_invariants() {
     if (from_page < 1 || to_page < 1) {
-        throw ErrorCode::InternalRangeError;
+        throw UnexpectedException;
     }
 }

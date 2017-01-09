@@ -7,8 +7,11 @@
 # Предварительная подготовка
 echo ' -- making preparations'
 rm -rf rpm/*
+rm -rf tmp/*
 mkdir -p rpm/{RPMS,SRPMS,SPECS,SOURCES,BUILD}
 mkdir -p tmp
+mkdir -p include
+mkdir -p lib
 
 # Конфигурируемые параметры
 pkg_version='1.0'
@@ -16,12 +19,15 @@ pkg_name='qpdf_transform'
 
 # Подготавливаем архив для SOURCES
 echo ' -- preparing SOURCES tar.gz'
+src_path=$pkg_name-$pkg_version
+mkdir -p tmp/$src_path/src
+cp src/* tmp/$src_path/src/
+cp Makefile tmp/$src_path/
+cp -r include tmp/$src_path/include
+cp -r lib tmp/$src_path/lib
+cd tmp
+tar -czvf ../rpm/SOURCES/$pkg_name-$pkg_version.tar.gz $src_path/*
 cd ..
-tar -czvf \
-    qpdf_transform/rpm/SOURCES/$pkg_name-$pkg_version.tar.gz \
-    qpdf_transform/src/* \
-    qpdf_transform/Makefile
-cd qpdf_transform
 
 # Генерация spec-файла
 echo ' -- generating SPECS file'

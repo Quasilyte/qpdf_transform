@@ -6,3 +6,5 @@ bin
 build
 tmp
 rpm
+include
+lib
