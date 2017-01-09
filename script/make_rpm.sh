@@ -8,10 +8,12 @@
 echo ' -- making preparations'
 rm -rf rpm/*
 mkdir -p rpm/{RPMS,SRPMS,SPECS,SOURCES,BUILD}
+mkdir -p tmp
 
 # Конфигурируемые параметры
 pkg_version='1.0'
 pkg_name='qpdf_transform'
+tmp_dir=`pwd`/tmp # Либо "/var/tmp"
 
 # Подготавливаем архив для SOURCES
 echo ' -- preparing SOURCES tar.gz'
@@ -23,6 +25,7 @@ cat <<EOF > rpm/SPECS/qpdf_transform.spec
 #########################################
 Name: $pkg_name
 Version: $pkg_version
+Release: 1
 URL: https://github.com/Quasilyte/qpdf_transform
 Summary: Program to transform input PDF. Can reorder pages, rotate them, omit pages in single operation
 Group: Applications/file
@@ -51,7 +54,6 @@ install qpdf_transform $RPM_BUILD_ROOT/usr/local/bin
 %{_bindir}/qpdf_transform
 
 %changelog
-N/A
 #########################################
 EOF
 
