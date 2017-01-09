@@ -58,7 +58,7 @@ make
 
 %install
 mkdir -p $RPM_BUILD_ROOT/usr/local/{bin,lib,share}
-install qpdf_transform $RPM_BUILD_ROOT/usr/local/bin
+install bin/qpdf_transform $RPM_BUILD_ROOT/usr/local/bin
 
 %files
 %{_bindir}/qpdf_transform

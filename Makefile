@@ -6,7 +6,6 @@ EXECUTABLE_NAME=bin/qpdf_transform
 SOURCE_FILES=$(shell find src -name '*.cpp')
 
 LIBS=-lqpdf -lz -lpcre
-ADDITIONAL_LIBS=$(shell find lib -name '*.so')
 
 INCLUDES=\
     -I/usr/local/include/qpdf/ \
@@ -17,8 +16,9 @@ LIB_DIRS=\
     -L/usr/lib64/ \
     -L/usr/lib/ \
     -L/usr/local/lib/ \
-    -L/usr/share/lib
+    -L/usr/share/lib \
+    -Llib
 
 all:
 	mkdir -p bin
-	$(CXX) $(CXXFLAGS) $(INCLUDES) $(LIB_DIRS) $(SOURCE_FILES) $(LIBS) $(ADDITIONAL_LIBS) -o $(EXECUTABLE_NAME)
+	$(CXX) $(CXXFLAGS) $(INCLUDES) $(LIB_DIRS) $(SOURCE_FILES) $(LIBS) -o $(EXECUTABLE_NAME)
