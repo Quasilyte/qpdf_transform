@@ -122,7 +122,7 @@ static Arguments parse_arguments(int argc, char* argv[]) {
 static map<int, Rotation> parse_rotations(vector<RotationArg>& rotations) {
     map<int, Rotation> result;
 
-    for (int i = 0; i < rotations.size(); ++i) {
+    for (int i = 0; i < (int)rotations.size(); ++i) {
         RotationArg rotation_arg = rotations[i];
         for (PageNumberStream numbers(rotation_arg.pages); numbers.has_next(); numbers.next()) {
             result[numbers.current()] = rotation_arg.rotation;
@@ -159,7 +159,7 @@ static void apply_transformations(QPDF& in,
     for (PageNumberStream numbers(page_numbers); numbers.has_next(); numbers.next()) {
         int number = numbers.current();
 
-        if (number > pages.size()) {
+        if (number > (int)pages.size()) {
             throw BadPageNumber;
         }
 
