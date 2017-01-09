@@ -36,3 +36,17 @@ Makefile предполагает, что заголовочные файлы о
 
 -- `Permission denied` при установке пакета (install)  
 - Запустить установку пакета из-под пользователя с правами записи в эту директорию
+
+## Коды ошибок
+
+```
+0 = Success
+1 = InvalidArgCount: "<in-pdf> or <out-pdf> or <pages> arg is missing"
+2 = InputFileNotExist: "<in-pdf> file not found (not exists or can not be accessed)"
+3 = InputAndOutputOverlap: "<in-pdf> should not be the same as <out-pdf>"
+4 = InvalidRotationArg: "invalid rotation value given"
+5 = UnexpectedException: "unexpected exception during execution"
+6 = BadPageNumber: "bad page number (negative or higher than max page number)"
+```
+Если qpdf бросает исключение, утилита выходит с кодом `6`.
+Ошибка печатается в `stderr`.
