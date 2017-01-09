@@ -8,8 +8,9 @@ SOURCE_FILES=$(shell find src -name '*.cpp')
 LIBS=-lqpdf -lz -lpcre
 
 INCLUDES=\
-    -I/usr/local/include/qpdf/ \
-    -I/usr/share/include/qpdf/ \
+    -I/usr/local/include \
+    -I/usr/share/include \
+    -I/usr/include \
     -Iinclude
 
 LIB_DIRS=\
