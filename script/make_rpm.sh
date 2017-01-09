@@ -4,6 +4,9 @@
 # (!) Запускать из корня репозитория qpdf_transform
 #####
 
+# Предварительная подготовка
+echo ' -- making preparations'
+rm -rf rpm/*
 mkdir -p rpm/{RPMS,SRPMS,SPECS,SOURCES,BUILD}
 
 # Конфигурируемые параметры
@@ -11,10 +14,12 @@ pkg_version='1.0'
 pkg_name='qpdf_transform'
 
 # Подготавливаем архив для SOURCES
+echo ' -- preparing SOURCES tar.gz'
 tar -czvf rpm/SOURCES/$pkg_name-$pkg_version.tar.gz src/* Makefile
 
 # Генерация spec-файла
-cat <<EOF
+echo ' -- generating SPECS file'
+cat <<EOF > rpm/SPECS/qpdf_transform.spec
     Name:       $pkg_name
     Version:    $pkg_version
     Url:        https://github.com/Quasilyte/qpdf_transform
@@ -47,3 +52,5 @@ cat <<EOF
     %changelog
     N/A
 EOF
+
+echo ' -- done'
