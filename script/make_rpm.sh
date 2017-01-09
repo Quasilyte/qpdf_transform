@@ -13,11 +13,15 @@ mkdir -p tmp
 # Конфигурируемые параметры
 pkg_version='1.0'
 pkg_name='qpdf_transform'
-tmp_dir=`pwd`/tmp # Либо "/var/tmp"
 
 # Подготавливаем архив для SOURCES
 echo ' -- preparing SOURCES tar.gz'
-tar -czvf rpm/SOURCES/$pkg_name-$pkg_version.tar.gz src/* Makefile
+cd ..
+tar -czvf \
+    qpdf_transform/rpm/SOURCES/$pkg_name-$pkg_version.tar.gz \
+    qpdf_transform/src/* \
+    qpdf_transform/Makefile
+cd qpdf_transform
 
 # Генерация spec-файла
 echo ' -- generating SPECS file'
