@@ -20,37 +20,39 @@ tar -czvf rpm/SOURCES/$pkg_name-$pkg_version.tar.gz src/* Makefile
 # Генерация spec-файла
 echo ' -- generating SPECS file'
 cat <<EOF > rpm/SPECS/qpdf_transform.spec
-    Name:       $pkg_name
-    Version:    $pkg_version
-    Url:        https://github.com/Quasilyte/qpdf_transform
-    Summary:    Program to transform input PDF. Can reorder pages, rotate them, omit pages in single operation
-    Group:      Applications/file
-    License:    MIT
-    Source:     %{name}-%{version}.tar.gz
+#########################################
+Name: $pkg_name
+Version: $pkg_version
+URL: https://github.com/Quasilyte/qpdf_transform
+Summary: Program to transform input PDF. Can reorder pages, rotate them, omit pages in single operation
+Group: Applications/file
+License: MIT
+Source: %{name}-%{version}.tar.gz
 
-    # BuildRequires:
-    # Requires:
+# BuildRequires:
+# Requires:
 
-    %description
-    Maps input PDF into output PDF using [page, rotation] lists.
-    It can be used to create a PDF copy which contains some pages removed,
-    other pages rotated and some pages reordered.
+%description
+Maps input PDF into output PDF using [page, rotation] lists.
+It can be used to create a PDF copy which contains some pages removed,
+other pages rotated and some pages reordered.
 
-    %prep
-    %setup -q -n %{name}-%{version}
+%prep
+%setup -q -n %{name}-%{version}
 
-    %build
-    make
+%build
+make
 
-    %install
-    mkdir -p $RPM_BUILD_ROOT/usr/local/{bin,lib,share}
-    install qpdf_transform $RPM_BUILD_ROOT/usr/local/bin
+%install
+mkdir -p $RPM_BUILD_ROOT/usr/local/{bin,lib,share}
+install qpdf_transform $RPM_BUILD_ROOT/usr/local/bin
 
-    %files
-    %{_bindir}/qpdf_transform
+%files
+%{_bindir}/qpdf_transform
 
-    %changelog
-    N/A
+%changelog
+N/A
+#########################################
 EOF
 
 echo ' -- done'
